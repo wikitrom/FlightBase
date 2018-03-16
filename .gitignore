@@ -1,0 +1,7 @@
+/out
+/build
+/target
+.FlightBase.iml
+.idea
+.project
+.classpath
