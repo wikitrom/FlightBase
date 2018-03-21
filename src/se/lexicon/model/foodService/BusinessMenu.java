@@ -15,4 +15,18 @@ public class BusinessMenu extends Menu {
 		foods.put("Salmon", 160);
 
 	}
+
+	@Override
+	public void displayMenu() {
+		displayHeader();
+		super.displayDrinkMenu();
+		super.displayFoodMenu();
+	}
+
+	private void displayHeader() {
+		System.out.println();
+		System.out.println("          Business Class Menu");
+		System.out.println("======================================");
+	}
+
 }

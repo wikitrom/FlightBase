@@ -4,7 +4,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.stream.Collectors;
 
-public class Menu {
+abstract public class Menu {
 
 	protected Map<String, Integer> drinks;
 	protected Map<String, Integer> foods;
@@ -14,12 +14,8 @@ public class Menu {
 		foods = new HashMap<>();
 	}
 
-	public void displayMenu() {
+	public abstract void displayMenu(); // implemented by sub-classes
 
-		displayHeader();
-		displayDrinkMenu();
-		displayFoodMenu();
-	}
 
 	public Map<String, Integer> getFoodOrDrink(String name) {
 
@@ -38,21 +34,14 @@ public class Menu {
 		return eatableToReturn;
 	}
 
-	// private helper methods
-	private void displayHeader() {
-		System.out.println();
-		System.out.println("          Economy Class Menu");
-		System.out.println("======================================");
-	}
-
-	private void displayDrinkMenu() {
+	public void displayDrinkMenu() {
 		System.out.println();
 		System.out.println("Available drinks:");
 
 		drinks.forEach((k, v) -> System.out.println(k + " (price: " + v + " SEK]"));
 	}
 
-	private void displayFoodMenu() {
+	public void displayFoodMenu() {
 		System.out.println();
 		System.out.println("Available food:");
 

@@ -15,4 +15,18 @@ public class EconomyMenu extends Menu {
 		foods.put("Tomato soup", 54);
 
 	}
+
+	@Override
+	public void displayMenu() {
+		displayHeader();
+		super.displayDrinkMenu();
+		super.displayFoodMenu();
+	}
+
+	private void displayHeader() {
+		System.out.println();
+		System.out.println("          Economy Class Menu");
+		System.out.println("======================================");
+	}
+
 }
