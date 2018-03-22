@@ -1,0 +1,242 @@
+@startuml
+
+' settings
+' --------------------------------------------
+' skinparam classAttributeIconSize 0
+
+title Simple Fligth Base - Class Diagram
+
+' define packages/namespaces and/or classes
+' note:  may contain internal relations
+' -----------------------------------------
+
+
+' --- Application/UI
+
+package "application" as appl {
+
+class "Main" as main {
+      + main() : void
+  }
+}
+
+package ui {
+
+class "UserInterface" as uiIf {
+      + businessClassMethod(int,int,String) : void
+      + economyClassMethod(int,int,String) : void      
+  }
+
+}
+
+package "model" as model {
+
+enum GenderType {
+     MALE,FEMALE,UNKNOWN
+}
+
+enum TicketType {
+     ECONOMY,BUSINESS
+}
+
+package "model.foodService"  as food {
+
+class "Kitchen" as kitchen {
+      - tmpMeal : Meal
+
+      +cookMeal(TicketType ticketClass) : Meal
+  }
+
+class "Meal" as meal {
+      eatable[] : Map<name,price>   // items selected from menu
+      + displayMeal() : void
+      + getTotalPrice() : int
+      + addEatable(Map<String,price> item) : boolean
+      + removeEatable(Map<String,price> item) : void
+}
+
+abstract class "Menu" as menu {
+      drinks[] : Map<name,price>
+      foods[] : Map<name,price>
+
+      +  {abstract} displayMenu() : void
+
+      - displayDrinkMenu() : void
+      - displayFoodMenu() : void
+      +  getFoodOrDrink(name) : Map<name,price>
+  }
+
+class "EconomyMenu" as eMenu {
+      + EconomyMenu()  // populate drinks/foods
+      +  displayMenu() : void
+      - displayHeader() : void
+  }
+
+class "BusinessMenu" as bMenu {
+      + BusinessMenu()  // populate drinks/foods
+      +  displayMenu() : void
+      - displayHeader() : void
+
+  }
+
+' - package interanal relations 
+menu <|-down- bMenu 
+menu <|-down- eMenu 
+kitchen -down- meal : > instantiates
+
+}  /' end package foodService '/
+
+package "model.bookingService" as booking {
+
+
+together {    /' control layout '/
+class "BusinessBooking" as bBook {
+      - bookingId : int
+      - customer : Customer
+      - seat : BusinessClass
+      - bookingDate : Date
+      q
+      + BusinessBooking(bookingId, customer, seat) // constructor
+      + toString() : string
+      + equals(obj) : boolean // compare on bookingId
+      + getCustomer() : Customer
+      + getSeat() : BusinessClass
+      + getBookingDate() : Date
+
+  }
+
+class "BusinessBookingRegistry" as bBookReg {
+      - businessRegistry : ArrayList<BusinessBooking>
+
+      + BusinessBookingRegistry() // constructor
+      + addBooking(booking : BusinessBooking)
+  }
+
+bBookReg o-down- bBook
+
+class "EconomyBooking" as eBook {
+      - bookingId : int
+      - customer : Customer
+      - seat : EconomyClass
+      - bookingDate : Date
+      
+      + EconomyBooking(bookingId, customer, seat) // constructor
+      + toString() : string
+      + equals(obj) : boolean // compare on bookingId
+      + getCustomer() : Customer
+      + getSeat() : EconomyClass
+      + getBookingDate() : Date
+  }
+
+class "EconomyBookingRegistry" as eBookReg {
+      - registry : ArrayList<EconomyBooking>
+
+      + EconomyBookingRegistry() // constructor
+      + addBooking(booking : EconomyBooking)
+
+  }
+
+eBookReg o-down- eBook
+
+
+
+class "Customer" as customer {
+      - id : string
+      - firstname : string
+      - gender : GenderType
+      - ticketClass : string
+
+      + Customer(id,firstname,gender,ticketClass) // constructor
+  }
+
+bBook o-down- customer
+eBook o-down- customer
+
+}  /' end together '/
+
+
+together {    /' control layout '/
+class "Airline" as airline {
+      - flightNumber : string
+      - {static} total : int
+      - price : int
+
+      + Airline()  // empty constructor
+      + Airline(flightNumber:string,price:int)  // constructor
+      + getFlightNumber : string
+      + getTotal() : int
+      + getProfit() : double
+      + eaquals(obj) : boolean  // compare on flightNumber
+  }
+
+class "EconomyClass" as eClass {
+      - seatNumber : int
+
+      + EconomyClass(flightNumber:string, seatNumber:int) // constructor
+      + getSeatNumber() : int
+  }
+
+class "BusinessClass" as bClass {
+      - seatNumber : int
+
+      + BusinessClass(flightNumber:string, seatNumber:int) // constructor
+      + getSeatNumber() : int
+
+  }
+
+airline <|-down- eClass
+airline <|--down bClass
+
+class "BusinessClassSeatList" as bSeat {
+      - businessSeatMap : TreeMap<String, BusinessClass>
+
+      + BusinessClassSeatList()  // constructor
+      + getSeatMap() : TreeMap<String, BusinessClass>
+      + getNumberOfSeats() : int
+      + addSeat(seat: BusinessClass) : void
+
+  }
+
+bSeat o-down- bClass
+
+class "EconomyClassSeatList" as eSeat {
+      - economySeatMap : TreeMap<String, EcononmyClass>
+
+      + EconomyClassSeatList()  // constructor
+      + getSeatMap() : TreeMap<String, EcononmyClass>
+      + getNumberOfSeats() : int
+      + addSeat(seat: EconomyClass) : void
+}
+
+eSeat o-down- eClass
+}  /' end together '/
+
+}   /' end package bookingService '/
+
+}   /' end package model '/
+
+
+' define relations between packages/interfaces
+' --------------------------------------------
+appl -right- uiIf : > uses
+appl -- airline : > uses
+
+uiIf -- kitchen : > uses
+uiIf -- customer : > uses
+
+uiIf -- bSeat : > uses
+uiIf -- bBook : > uses
+uiIf -- bBookReg : > uses
+uiIf -- bClass : > uses
+
+uiIf -- eSeat : > uses
+uiIf -- eBook : > uses
+uiIf -- eBookReg : > uses
+uiIf -- eClass : > uses
+
+' define relations that control generated image layout
+' ----------------------------------------------------
+uiIf -[hidden]- eBookReg
+
+
+@enduml
