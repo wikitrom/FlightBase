@@ -1,6 +1,5 @@
-package models;
+package se.lexicon.model.bookingService;
 
-import java.util.HashMap;
 import java.util.TreeMap;
 
 public class EconomyClassSeatList {

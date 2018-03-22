@@ -1,10 +1,10 @@
-package models;
+package se.lexicon.model.bookingService;
 
 import java.util.Date;
 
 import java.util.GregorianCalendar;
 
-import utilities.GenderType;
+import se.lexicon.model.GenderType;
 
 
 

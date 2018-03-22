@@ -1,23 +1,24 @@
-package ui;
+package se.lexicon.ui;
 
 import java.util.Scanner;
 
-import models.BusinessBooking;
-import models.BusinessBookingRegistry;
-import models.BusinessClass;
-import models.BusinessClassSeatList;
-import models.Customer;
-import models.EconomyBooking;
-import models.EconomyBookingRegistry;
-import models.EconomyClass;
-import models.EconomyClassSeatList;
-import utilities.GenderType;
+import se.lexicon.model.GenderType;
+import se.lexicon.model.bookingService.BusinessBooking;
+import se.lexicon.model.bookingService.BusinessBookingRegistry;
+import se.lexicon.model.bookingService.BusinessClass;
+import se.lexicon.model.bookingService.BusinessClassSeatList;
+import se.lexicon.model.bookingService.Customer;
+import se.lexicon.model.bookingService.EconomyBooking;
+import se.lexicon.model.bookingService.EconomyBookingRegistry;
+import se.lexicon.model.bookingService.EconomyClass;
+import se.lexicon.model.bookingService.EconomyClassSeatList;
+
 import java.util.Scanner;
 public class UserInterface 
 {
 	
 	
-	void businessClassMethod(int n,int s,String business)
+	public void businessClassMethod(int n,int s,String business)
 	
 	{
 		
@@ -57,7 +58,7 @@ public class UserInterface
 	
 	
 	
-	void economyClassMethod(int y,int z,String economy)
+	public void economyClassMethod(int y,int z,String economy)
 	
 	{
 		Scanner scan= new Scanner(System.in);

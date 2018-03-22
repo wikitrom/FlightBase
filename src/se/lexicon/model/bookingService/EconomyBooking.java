@@ -1,23 +1,21 @@
-
-
-package models;
+package se.lexicon.model.bookingService;
 
 import java.util.Date;
 
 import java.util.GregorianCalendar;
 
 
-public class BusinessBooking {
+public class EconomyBooking {
 
 	private int bookingID;
 	private Customer customer;
-	private BusinessClass seat;
+	private EconomyClass seat;
 
 	private Date bookingDate;
 	
 	
 	
-	public BusinessBooking(int bookingID, Customer customer, BusinessClass seat) {
+	public EconomyBooking(int bookingID, Customer customer, EconomyClass seat) {
 		super();
 		this.bookingID = bookingID;
 		this.customer = customer;
@@ -31,9 +29,9 @@ public class BusinessBooking {
 	}
 
 	@Override
-	public String toString() 
-	{
-	return  bookingID +"         "+seat.getFlightNumber()+"         "+customer.getTicketClass()+ "     " + seat.getSeatNumber()+"           " + customer.getName()+"           "+getBookingDate();
+	public String toString() {
+		
+		return  bookingID +"         "+seat.getFlightNumber()+"         "+customer.getTicketClass()+ "      " + seat.getSeatNumber()+"           " + customer.getName()+"         "+getBookingDate();
 	}
 
 	
@@ -46,7 +44,7 @@ public class BusinessBooking {
 			return false;
 		if (getClass() != obj.getClass())
 			return false;
-		BusinessBooking other = (BusinessBooking) obj;
+		EconomyBooking other = (EconomyBooking) obj;
 		if (bookingID != other.bookingID)
 			return false;
 		return true;
@@ -56,7 +54,7 @@ public class BusinessBooking {
 		return customer;
 	}
 
-	public BusinessClass getSeat() {
+	public EconomyClass getSeat() {
 		return seat;
 	}
 	
@@ -66,7 +64,6 @@ public class BusinessBooking {
 	}
 	
 	
-
 	
 	
 }

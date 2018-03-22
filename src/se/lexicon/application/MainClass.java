@@ -1,25 +1,9 @@
-package ui;
-
-import models.EconomyClass;
-
-
-import models.EconomyClassSeatList;
-
-import models.Customer;
-import models.EconomyBooking;
+package se.lexicon.application;
 
 import java.util.Scanner;
 
-
-import models.Airline;
-
-import models.EconomyBookingRegistry;
-import models.BusinessBooking;
-import models.BusinessBookingRegistry;
-import models.BusinessClass;
-import models.BusinessClassSeatList;
-import utilities.GenderType;
-import ui.*;
+import se.lexicon.model.bookingService.Airline;
+import se.lexicon.ui.UserInterface;
 
 public class MainClass {
 

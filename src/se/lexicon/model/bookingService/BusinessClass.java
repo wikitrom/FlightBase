@@ -1,4 +1,4 @@
-package models;
+package se.lexicon.model.bookingService;
 
 public class BusinessClass extends Airline{
 

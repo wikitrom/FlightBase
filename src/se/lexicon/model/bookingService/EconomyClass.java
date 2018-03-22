@@ -1,10 +1,9 @@
-package models;
+package se.lexicon.model.bookingService;
 
 public class EconomyClass extends Airline  {
 
 		
 	private int seatNumber;
-	private String seatType="Economy Class";
 	
 	
 	public EconomyClass(String flightNumber, int seatNumber) {
