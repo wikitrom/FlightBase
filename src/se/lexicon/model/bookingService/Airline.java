@@ -4,8 +4,6 @@ public class Airline {
 	
 	private String flightNumber;
 	
-	
-	private Customer customer;
 	private static int total;
 	private int price=0;
 	

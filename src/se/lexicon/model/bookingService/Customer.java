@@ -1,7 +1,5 @@
 package se.lexicon.model.bookingService;
 
-import java.util.Date;
-
 import java.util.GregorianCalendar;
 
 import se.lexicon.model.GenderType;
