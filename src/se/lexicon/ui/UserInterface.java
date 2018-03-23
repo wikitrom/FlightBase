@@ -52,6 +52,15 @@ public class UserInterface {
 		System.out.println();
 		System.out.println("BookingID   FlightNumber   Ticket Class       Seat Number  Customer Name   Booking Date");
 		System.out.println(bBooking1);
+		
+				// mats: print booked meal and price
+		System.out.println("Ticket price: " + bSeat1.getPrice() + " SEK");
+		System.out.println("Booked meal:");
+		meal.getMeal().forEach((k, v) -> System.out.println("- " + k + " (price: " + v + " SEK]"));
+		System.out.println("  Meal total price: " + meal.getTotalPrice());
+		System.out.println("----------------------------------");
+		System.out.println("Total price: " + (meal.getTotalPrice() + bSeat1.getPrice()) + " SEK");
+
 	}
 
 	public void economyClassMethod(int y, int z, String economy)
@@ -84,6 +93,14 @@ public class UserInterface {
 		System.out.println();
 		System.out.println("BookingID   FlightNumber   Ticket Class       Seat Number  Customer Name   Booking Date");
 		System.out.println(eBooking6);
+	
+		// mats: print booked meal and price
+		System.out.println("Ticket price: " + eSeat6.getPrice() + " SEK");
+		System.out.println("Booked meal:");
+		meal.getMeal().forEach((k, v) -> System.out.println("- " + k + " (price: " + v + " SEK]"));
+		System.out.println("  Meal total price: " + meal.getTotalPrice());
+		System.out.println("----------------------------------");
+		System.out.println("Total price: " + (meal.getTotalPrice() + eSeat6.getPrice()) + " SEK");
 	}
 
 }

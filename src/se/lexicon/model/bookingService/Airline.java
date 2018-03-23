@@ -25,6 +25,9 @@ public class Airline {
 		return flightNumber;
 	}
 
+	public int getPrice() {
+		return price;
+	}
 		
 	public boolean equals(Object obj) {
 		
