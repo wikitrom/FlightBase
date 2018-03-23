@@ -241,6 +241,9 @@ uiIf -- eBook : > uses
 uiIf -- eBookReg : > uses
 uiIf -- eClass : > uses
 
+eBook o- meal
+bBook o- meal
+
 ' define relations that control generated image layout
 ' ----------------------------------------------------
 uiIf -[hidden]- eBookReg
