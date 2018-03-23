@@ -4,7 +4,8 @@ public class Airline {
 	
 	private String flightNumber;
 	
-	private static int total;
+	private static int totalTicketPrice = 0;
+	private static int totalMealPrice = 0;
 	private int price=0;
 	
 	
@@ -13,7 +14,7 @@ public class Airline {
 		this.flightNumber = flightNumber;
 		
 		this.price=price;
-		total=total+this.price;
+		totalTicketPrice=totalTicketPrice+this.price;
 	}
 
 	public Airline() {
@@ -47,14 +48,16 @@ public class Airline {
 	}
 
 	public static int getTotal() {
-		return total;
+		return totalTicketPrice + totalMealPrice;
 	}
 
 	public double getProfit() {
 		
-		return (total*0.30);
+		return (getTotal() * 0.30);
 	}
 	
-	
+	public void addToTotalMealPrice (int mealPrice) {
+		totalMealPrice += mealPrice;
+	}
 	
 }

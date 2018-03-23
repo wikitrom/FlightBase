@@ -60,8 +60,8 @@ public class MainClass {
 			} else if (str.equalsIgnoreCase("exit")) {
 				scan.close();
 				Airline airline = new Airline();
-				System.out.println("\n" + "Total Cost Of Tickets :" + Airline.getTotal() + " SEK");
-				System.out.println("Total Profit :" + airline.getProfit() + " SEK");
+				System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
+				System.out.println("Total Profit: " + airline.getProfit() + " SEK");
 
 				System.exit(0);
 			}
@@ -71,8 +71,8 @@ public class MainClass {
 		System.out.println("\nFlight is full! no more booking Possible");
 
 		Airline airline = new Airline();
-		System.out.println("\n" + "Total Cost Of Tickets :" + Airline.getTotal() + " SEK");
-		System.out.println("Total Profit :" + airline.getProfit() + " SEK");
+		System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
+		System.out.println("Total Profit: " + airline.getProfit() + " SEK");
 
 	}
 }

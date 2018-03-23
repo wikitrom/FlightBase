@@ -4,37 +4,35 @@ import java.util.Date;
 
 import java.util.GregorianCalendar;
 
+import se.lexicon.model.foodService.Meal;
 
 public class EconomyBooking {
 
 	private int bookingID;
 	private Customer customer;
 	private EconomyClass seat;
-
+	private Meal meal;
 	private Date bookingDate;
-	
-	
-	
-	public EconomyBooking(int bookingID, Customer customer, EconomyClass seat) {
+
+	public EconomyBooking(int bookingID, Customer customer, EconomyClass seat, Meal meal) {
 		super();
 		this.bookingID = bookingID;
 		this.customer = customer;
 		this.seat = seat;
-	
-		
-		GregorianCalendar gCal= new GregorianCalendar();
+		this.meal = meal;
+
+		GregorianCalendar gCal = new GregorianCalendar();
 		gCal.add(GregorianCalendar.DAY_OF_MONTH, 14);
-		this.bookingDate=gCal.getTime();
-		
+		this.bookingDate = gCal.getTime();
+
 	}
 
 	@Override
 	public String toString() {
-		
-		return  bookingID +"         "+seat.getFlightNumber()+"         "+customer.getTicketClass()+ "      " + seat.getSeatNumber()+"           " + customer.getName()+"         "+getBookingDate();
-	}
 
-	
+		return bookingID + "         " + seat.getFlightNumber() + "         " + customer.getTicketClass() + "      "
+				+ seat.getSeatNumber() + "           " + customer.getName() + "         " + getBookingDate();
+	}
 
 	@Override
 	public boolean equals(Object obj) {
@@ -57,13 +55,10 @@ public class EconomyBooking {
 	public EconomyClass getSeat() {
 		return seat;
 	}
-	
+
 	public Date getBookingDate() {
-		
+
 		return bookingDate;
 	}
-	
-	
-	
-	
+
 }

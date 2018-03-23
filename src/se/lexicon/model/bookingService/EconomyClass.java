@@ -7,7 +7,7 @@ public class EconomyClass extends Airline  {
 	
 	
 	public EconomyClass(String flightNumber, int seatNumber) {
-		super(flightNumber, 5000);
+		super(flightNumber, 5000);  // 5000 = ticketPrice
 		
 		
 		this.seatNumber=seatNumber;

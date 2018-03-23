@@ -95,14 +95,16 @@ class "BusinessBooking" as bBook {
       - customer : Customer
       - seat : BusinessClass
       - bookingDate : Date
-      q
+      - meal : Meal
+
       + BusinessBooking(bookingId, customer, seat) // constructor
       + toString() : string
       + equals(obj) : boolean // compare on bookingId
       + getCustomer() : Customer
       + getSeat() : BusinessClass
       + getBookingDate() : Date
-
+      + setMeal(meal : Meal) : void
+      + getMeal(meal : Meal) : void
   }
 
 class "BusinessBookingRegistry" as bBookReg {
@@ -119,6 +121,7 @@ class "EconomyBooking" as eBook {
       - customer : Customer
       - seat : EconomyClass
       - bookingDate : Date
+      - meal : Meal
       
       + EconomyBooking(bookingId, customer, seat) // constructor
       + toString() : string
@@ -126,6 +129,8 @@ class "EconomyBooking" as eBook {
       + getCustomer() : Customer
       + getSeat() : EconomyClass
       + getBookingDate() : Date
+      + setMeal(meal : Meal) : void
+      + getMeal(meal : Meal) : void
   }
 
 class "EconomyBookingRegistry" as eBookReg {
@@ -158,7 +163,8 @@ eBook o-down- customer
 together {    /' control layout '/
 class "Airline" as airline {
       - flightNumber : string
-      - {static} total : int
+      - {static} totalTicketPrice : int
+      - {static} totalMealPrice : int
       - price : int
 
       + Airline()  // empty constructor
@@ -167,6 +173,7 @@ class "Airline" as airline {
       + getTotal() : int
       + getProfit() : double
       + eaquals(obj) : boolean  // compare on flightNumber
+      + addToTotalMealPrice(mealPrice : int) : void
   }
 
 class "EconomyClass" as eClass {

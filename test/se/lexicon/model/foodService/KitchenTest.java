@@ -14,13 +14,22 @@ public class KitchenTest {
 	Meal meal;
 	Map<String, Integer> mealEntries;
 
-
 	@Test
 	public void KitschenEconomyTest() {
 
 		meal = kitchen.cookMeal(TicketType.ECONOMY);
 		System.out.println();
 		System.out.println("KitschenEconomyTest: get and print meal returned by kitchen");
+		meal.getMeal().forEach((k, v) -> System.out.println(k + " (price: " + v + " SEK]"));
+
+	}
+
+	@Test
+	public void KitschenBusinessTest() {
+
+		meal = kitchen.cookMeal(TicketType.BUSINESS);
+		System.out.println();
+		System.out.println("KitschenBusinessTest: get and print meal returned by kitchen");
 		meal.getMeal().forEach((k, v) -> System.out.println(k + " (price: " + v + " SEK]"));
 
 	}
