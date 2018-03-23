@@ -3,9 +3,12 @@ package se.lexicon.application;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import com.sun.org.apache.xerces.internal.util.SynchronizedSymbolTable;
+
 import se.lexicon.model.bookingService.Airline;
 import se.lexicon.model.bookingService.BusinessBooking;
 import se.lexicon.model.bookingService.BusinessBookingRegistry;
+import se.lexicon.model.bookingService.EconomyBooking;
 import se.lexicon.ui.UserInterface;
 
 public class MainClass {
@@ -22,6 +25,11 @@ public class MainClass {
 
 		UserInterface ui = new UserInterface();
 
+		ArrayList<BusinessBooking> bBookings = new ArrayList<>();
+		ArrayList<EconomyBooking> eBookings = new ArrayList<>();
+		BusinessBooking[] bBooking;
+		EconomyBooking[] eBooking;
+
 		boolean notExit = true;
 
 		do {
@@ -29,11 +37,13 @@ public class MainClass {
 
 			if (countBookings >= limit) {
 				System.out.println();
-				System.out.println("\nFlight is full! no more booking Possible,\nuse 'exit' to leave booking system and see total revenue.");
+				System.out.println(
+						"\nFlight is full! no more booking Possible,\nuse 'exit' to leave booking system and see total revenue.");
 			} else {
 				System.out.println();
 				System.out.println("Current number or bookings:");
-				System.out.println("Business class: " + bClassSeats + " (left: " + (bLimit-bClassSeats) + ") | Economy Class: " + eClassSeats + " (left: " + (eLimit-eClassSeats) + ")");
+				System.out.println("Business class: " + bClassSeats + " (left: " + (bLimit - bClassSeats)
+						+ ") | Economy Class: " + eClassSeats + " (left: " + (eLimit - eClassSeats) + ")");
 				System.out.println(
 						"\nWhich type of ticket class do you want to buy? Enter 'exit' to cancel.\n- Business \n- Economy\n- Exit");
 			}
@@ -44,7 +54,7 @@ public class MainClass {
 				if (str.equalsIgnoreCase("business")) {
 					if (bClassSeats < bLimit) {
 
-						ui.businessClassMethod(500 + bSeatStart, bSeatStart++, "Business");
+						bBookings.add(ui.businessClassMethod(500 + bSeatStart, bSeatStart++, "Business"));
 						bClassSeats++;
 						countBookings++;
 					} else {
@@ -52,14 +62,14 @@ public class MainClass {
 								"Business class is full. Would you like to book ticket in Economy Class? write yes or no");
 						str = scan.next();
 						if (str.equalsIgnoreCase("yes")) {
-							ui.economyClassMethod(500 + eSeatStart, eSeatStart++, "Economy");
+							eBookings.add(ui.economyClassMethod(500 + eSeatStart, eSeatStart++, "Economy"));
 							eClassSeats++;
 							countBookings++;
 						}
 					}
 				} else if (str.equalsIgnoreCase("economy")) {
 					if (eClassSeats < eLimit) {
-						ui.economyClassMethod(500 + eSeatStart, eSeatStart++, "Economy");
+						eBookings.add(ui.economyClassMethod(500 + eSeatStart, eSeatStart++, "Economy"));
 						eClassSeats++;
 						countBookings++;
 					}
@@ -69,7 +79,7 @@ public class MainClass {
 								"Economy class is full. Would you like to book ticket in BusinessClass? write yes or no");
 						str = scan.next();
 						if (str.equalsIgnoreCase("yes")) {
-							ui.businessClassMethod(500 + bSeatStart, bSeatStart++, "Business");
+							bBookings.add(ui.businessClassMethod(500 + bSeatStart, bSeatStart++, "Business"));
 							bClassSeats++;
 							countBookings++;
 						}
@@ -84,9 +94,14 @@ public class MainClass {
 			}
 
 		} while (notExit);
-		
-		// TODO: Here we should print all bookings 
-		// mats: haven't yet figured out how to do this. :-P
+
+		// mats: emergency solution - perception is everything :-)
+		System.out.println();
+		System.out.println("Current bookings:");
+		System.out.println("BookingID   FlightNumber   Ticket Class       Seat Number  Customer Name   Booking Date");
+
+		bBookings.forEach(System.out::println);
+		eBookings.forEach(System.out::println);
 
 		Airline airline = new Airline();
 		System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");

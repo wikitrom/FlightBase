@@ -22,7 +22,7 @@ public class UserInterface {
 	Kitchen kitchen = new Kitchen();
 	Meal meal = new Meal();
 
-	public void businessClassMethod(int n, int s, String business)
+	public BusinessBooking businessClassMethod(int n, int s, String business)
 
 	{
 		Scanner in = new Scanner(System.in);
@@ -61,9 +61,10 @@ public class UserInterface {
 		System.out.println("----------------------------------");
 		System.out.println("Total price: " + (meal.getTotalPrice() + bSeat1.getPrice()) + " SEK");
 
+		return bBooking1;
 	}
 
-	public void economyClassMethod(int y, int z, String economy)
+	public EconomyBooking economyClassMethod(int y, int z, String economy)
 
 	{
 		Scanner scan = new Scanner(System.in);
@@ -101,6 +102,8 @@ public class UserInterface {
 		System.out.println("  Meal total price: " + meal.getTotalPrice());
 		System.out.println("----------------------------------");
 		System.out.println("Total price: " + (meal.getTotalPrice() + eSeat6.getPrice()) + " SEK");
+		
+		return eBooking6;
 	}
 
 }
