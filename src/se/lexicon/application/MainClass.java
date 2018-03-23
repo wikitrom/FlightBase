@@ -9,13 +9,17 @@ public class MainClass {
 
 	static int bClassSeats = 0;
 	static int eClassSeats = 0;
-	static int i = 1, j = 6;
+	static int bSeatStart = 1, eSeatStart = 6;
+	final static int limit=10;
+	final static int bLimit=5;
+	final static int eLimit=5;
+	
 
 	public static void main(String[] args) {
 
 		UserInterface ui = new UserInterface();
 
-		for (int x = 0; x < 4; x++) {
+		for (int x = 0; x < limit; x++) {
 
 			System.out.println(
 					"\nWhich type of ticket class do you want to buy? Enter 'exit' to cancel.\n- Business \n- Economy\n- Exit");
@@ -23,9 +27,9 @@ public class MainClass {
 			String str = scan.next();
 
 			if (str.equalsIgnoreCase("business")) {
-				if (bClassSeats < 2) {
+				if (bClassSeats < bLimit) {
 
-					ui.businessClassMethod(500 + i, i++, "Business");
+					ui.businessClassMethod(500 + bSeatStart, bSeatStart++, "Business");
 					bClassSeats++;
 				}
 
@@ -34,14 +38,17 @@ public class MainClass {
 							"Business class is full would you like to book ticket in Econmy Class write yes or exit");
 					str = scan.next();
 					if (str.equalsIgnoreCase("yes")) {
-						ui.economyClassMethod(500 + j, j++, "Economy");
+						ui.economyClassMethod(500 + eSeatStart, eSeatStart++, "Economy");
 					} else {
+						Airline airline = new Airline();
+						System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
+						System.out.println("Total Profit: " + airline.getProfit() + " SEK");
 						System.exit(0);
 					}
 				}
 			} else if (str.equalsIgnoreCase("economy")) {
-				if (eClassSeats < 2) {
-					ui.economyClassMethod(500 + j, j++, "Economy");
+				if (eClassSeats < eLimit) {
+					ui.economyClassMethod(500 + eSeatStart, eSeatStart++, "Economy");
 					eClassSeats++;
 				}
 
@@ -50,8 +57,11 @@ public class MainClass {
 							"Economy Class is full Would you like to book ticket in Business Class write yes or exit");
 					str = scan.next();
 					if (str.equalsIgnoreCase("yes")) {
-						ui.businessClassMethod(500 + i, i++, "Business");
+						ui.businessClassMethod(500 + bSeatStart, bSeatStart++, "Business");
 					} else {
+						Airline airline = new Airline();
+						System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
+						System.out.println("Total Profit: " + airline.getProfit() + " SEK");
 						System.exit(0);
 					}
 
