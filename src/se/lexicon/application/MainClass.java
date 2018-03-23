@@ -29,7 +29,7 @@ public class MainClass {
 		ArrayList<EconomyBooking> eBookings = new ArrayList<>();
 		BusinessBooking[] bBooking;
 		EconomyBooking[] eBooking;
-
+		Airline airline = new Airline();
 		boolean notExit = true;
 
 		do {
@@ -38,14 +38,14 @@ public class MainClass {
 			if (countBookings >= limit) {
 				System.out.println();
 				System.out.println(
-						"\nFlight is full! no more booking Possible,\nuse 'exit' to leave booking system and see total revenue.");
+						"\nFlight is full! no more booking Possible!\n - Bookings\n - Finances\n- Exit");
 			} else {
 				System.out.println();
 				System.out.println("Current number or bookings:");
 				System.out.println("Business class: " + bClassSeats + " (left: " + (bLimit - bClassSeats)
 						+ ") | Economy Class: " + eClassSeats + " (left: " + (eLimit - eClassSeats) + ")");
 				System.out.println(
-						"\nWhich type of ticket class do you want to buy? Enter 'exit' to cancel.\n- Business \n- Economy\n- Exit");
+						"\nWhich type of ticket class do you want to buy? \n- Business \n- Economy\n- Bookings\n- Finances\n- Exit");
 			}
 
 			String str = scan.next();
@@ -93,19 +93,25 @@ public class MainClass {
 				notExit = false;
 			}
 
+			if (str.equalsIgnoreCase("bookings")) {
+				// mats: emergency solution - perception is everything :-)
+				System.out.println();
+				System.out.println("Current bookings:");
+				System.out.println(
+						"BookingID   FlightNumber   Ticket Class       Seat Number  Customer Name   Booking Date");
+
+				bBookings.forEach(System.out::println);
+				eBookings.forEach(System.out::println);
+			}
+
+			if (str.equalsIgnoreCase("finances")) {
+				System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
+				System.out.println("Total Profit: " + airline.getProfit() + " SEK");
+
+			}
+
 		} while (notExit);
 
-		// mats: emergency solution - perception is everything :-)
-		System.out.println();
-		System.out.println("Current bookings:");
-		System.out.println("BookingID   FlightNumber   Ticket Class       Seat Number  Customer Name   Booking Date");
-
-		bBookings.forEach(System.out::println);
-		eBookings.forEach(System.out::println);
-
-		Airline airline = new Airline();
-		System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
-		System.out.println("Total Profit: " + airline.getProfit() + " SEK");
 
 	}
 }
