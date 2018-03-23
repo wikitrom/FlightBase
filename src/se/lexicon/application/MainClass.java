@@ -10,10 +10,10 @@ public class MainClass {
 	static int bClassSeats = 0;
 	static int eClassSeats = 0;
 	static int bSeatStart = 1, eSeatStart = 6;
-	final static int limit=10;
-	final static int bLimit=5;
-	final static int eLimit=5;
-	
+	final static int limit = 10;
+	final static int bLimit = 5;
+	final static int eLimit = 5;
+	static int countBookings = 0;
 
 	public static void main(String[] args) {
 
@@ -31,55 +31,48 @@ public class MainClass {
 
 					ui.businessClassMethod(500 + bSeatStart, bSeatStart++, "Business");
 					bClassSeats++;
+					countBookings++;
 				}
 
 				else {
 					System.out.println(
-							"Business class is full would you like to book ticket in Econmy Class write yes or exit");
+							"Business class is full. Would you like to book ticket in Economy Class? write yes or no");
 					str = scan.next();
 					if (str.equalsIgnoreCase("yes")) {
 						ui.economyClassMethod(500 + eSeatStart, eSeatStart++, "Economy");
-					} else {
-						Airline airline = new Airline();
-						System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
-						System.out.println("Total Profit: " + airline.getProfit() + " SEK");
-						System.exit(0);
+						eClassSeats++;
+						countBookings++;
 					}
 				}
 			} else if (str.equalsIgnoreCase("economy")) {
 				if (eClassSeats < eLimit) {
 					ui.economyClassMethod(500 + eSeatStart, eSeatStart++, "Economy");
 					eClassSeats++;
+					countBookings++;
 				}
 
 				else {
 					System.out.println(
-							"Economy Class is full Would you like to book ticket in Business Class write yes or exit");
+							"Economy class is full. Would you like to book ticket in BusinessClass? write yes or no");
 					str = scan.next();
 					if (str.equalsIgnoreCase("yes")) {
 						ui.businessClassMethod(500 + bSeatStart, bSeatStart++, "Business");
-					} else {
-						Airline airline = new Airline();
-						System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
-						System.out.println("Total Profit: " + airline.getProfit() + " SEK");
-						System.exit(0);
+						bClassSeats++;
+						countBookings++;
 					}
-
 				}
 
 			} else if (str.equalsIgnoreCase("exit")) {
 				scan.close();
-				Airline airline = new Airline();
-				System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
-				System.out.println("Total Profit: " + airline.getProfit() + " SEK");
-
-				System.exit(0);
+				break;
 			}
 
 		}
 
+		if (countBookings > limit) {
 		System.out.println("\nFlight is full! no more booking Possible");
-
+		}
+		
 		Airline airline = new Airline();
 		System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
 		System.out.println("Total Profit: " + airline.getProfit() + " SEK");
