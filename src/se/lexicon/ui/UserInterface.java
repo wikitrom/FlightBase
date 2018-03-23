@@ -49,6 +49,7 @@ public class UserInterface {
 		BusinessBooking bBooking1 = new BusinessBooking(551 + s, a1, bSeat1, meal);
 		businessRegistry.addBooking(bBooking1);
 
+		System.out.println();
 		System.out.println("BookingID   FlightNumber   Ticket Class       Seat Number  Customer Name   Booking Date");
 		System.out.println(bBooking1);
 	}
@@ -80,6 +81,7 @@ public class UserInterface {
 
 		economyRegistry.addBooking(eBooking6);
 
+		System.out.println();
 		System.out.println("BookingID   FlightNumber   Ticket Class       Seat Number  Customer Name   Booking Date");
 		System.out.println(eBooking6);
 	}
