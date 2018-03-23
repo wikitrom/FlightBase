@@ -37,15 +37,16 @@ public class MainClass {
 
 			if (countBookings >= limit) {
 				System.out.println();
-				System.out.println(
-						"\nFlight is full! no more booking Possible!\n - Bookings\n - Finances\n- Exit");
+				System.out.println("\nFlight is full! no more booking Possible!\n - Bookings\n - Finances\n- Exit");
 			} else {
 				System.out.println();
-				System.out.println("Current number or bookings:");
+				System.out.println("Current number of bookings:");
 				System.out.println("Business class: " + bClassSeats + " (left: " + (bLimit - bClassSeats)
 						+ ") | Economy Class: " + eClassSeats + " (left: " + (eLimit - eClassSeats) + ")");
-				System.out.println(
-						"\nWhich type of ticket class do you want to buy? \n- Business \n- Economy\n- Bookings\n- Finances\n- Exit");
+				System.out.println();
+				System.out.println("Please select which type of ticket class do you want to buy? ");
+				System.out.println("Alternatively show current bookings or Finannces.");
+				System.out.println("- Business (class)\n- Economy (class)\n\n- Bookings\n- Finances\n- Exit");
 			}
 
 			String str = scan.next();
@@ -99,19 +100,21 @@ public class MainClass {
 				System.out.println("Current bookings:");
 				System.out.println(
 						"BookingID   FlightNumber   Ticket Class       Seat Number  Customer Name   Booking Date");
-
+				System.out.println("-------------------------------------------------------------------------------------");
 				bBookings.forEach(System.out::println);
 				eBookings.forEach(System.out::println);
+				System.out.println("-------------------------------------------------------------------------------------");
+				System.out.println();
 			}
 
 			if (str.equalsIgnoreCase("finances")) {
-				System.out.println("\n" + "Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
+				System.out.println();
+				System.out.println("Total income (Tickets+Meals): " + airline.getTotal() + " SEK");
 				System.out.println("Total Profit: " + airline.getProfit() + " SEK");
-
+				System.out.println();
 			}
 
 		} while (notExit);
-
 
 	}
 }
